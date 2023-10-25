@@ -24,7 +24,6 @@ namespace Editor
             _gridSize = EditorGUILayout.Vector3Field("Grid Size", _gridSize);
             _padding = EditorGUILayout.IntField("Padding", _padding);
             
-
             if (GUILayout.Button("Generate"))
             {
                 GenerateGrid();
