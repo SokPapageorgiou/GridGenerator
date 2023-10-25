@@ -7,6 +7,7 @@ namespace Editor
     {
         private const string ParentName = "Grid";
         private const string NodeName = "Node";
+        private const float LayoutSpace = 10f;
         
         private Vector3 _gridSize = new (0, 0, 0);
         private int _padding = 1;
@@ -21,8 +22,10 @@ namespace Editor
         {
             GUILayout.Label("Generate Grid", EditorStyles.boldLabel);
 
+            GUILayout.Space(LayoutSpace);
             _gridSize = EditorGUILayout.Vector3Field("Grid Size", _gridSize);
             _padding = EditorGUILayout.IntField("Padding", _padding);
+            GUILayout.Space(LayoutSpace);
             
             if (GUILayout.Button("Generate"))
             {
