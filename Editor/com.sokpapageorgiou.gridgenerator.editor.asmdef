@@ -1,7 +1,7 @@
 {
     "name": "com.sokpapageorgiou.gridgenerator.editor",
     "rootNamespace": "",
-    "references": [],
+    "references": ["GUID:4d6b9adbbf84f13459b6417cf26936f8"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

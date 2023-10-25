@@ -59,6 +59,7 @@ namespace Editor
                     position = nodePosition
                 }
             };
+            node.AddComponent<NodeVisualization>();
             node.transform.SetParent(parent.transform);
         }
     }
