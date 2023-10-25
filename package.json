@@ -1,15 +1,17 @@
 {
-    "name": "com.sokpapageorgiou.gridgenerator",
-    "version": "0.1.0",
-    "displayName": "Sok.GridGenerator",
-    "description": "GridGenerator for Unity.",
-    "unity": "2022.3",
-    "dependencies": {},
-    "keywords": ["grid", "a*", "sokpapageorgiou"],
-    "author": 
-    {
-        "name": "Sokratis Papageorgiou",
-        "email": "hello@sokpapageorgiou.com",
-        "url": "https://www.sokpapageorgiou.com/"
-    }
+  "name": "com.sokpapageorgiou.gridgenerator",
+  "version": "0.5.0",
+  "displayName": "Sok.GridGenerator",
+  "description": "Generates a 3D grid of GameObjects",
+  "unity": "2022.3",
+  "keywords": [
+    "grid",
+    "Game Objects",
+    "sokpapageorgiou"
+  ],
+  "author": {
+    "name": "Sokratis Papageorgiou",
+    "email": "hello@sokpapageorgiou.com",
+    "url": "https://www.sokpapageorgiou.com/"
+  }
 }
