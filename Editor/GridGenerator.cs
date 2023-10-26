@@ -1,58 +1,39 @@
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Editor
 {
-    public class GridGenerator : EditorWindow
+    public class GridGenerator
     {
         private const string ParentName = "Grid";
         private const string NodeName = "Node";
-        private const float LayoutSpace = 10f;
         
-        private Vector3 _gridSize = new (0, 0, 0);
-        private int _padding = 1;
-        
-        [MenuItem("Tools/Sok/GridGenerator")]
-        public static void ShowWindow()
-        {
-            GetWindow(typeof(GridGenerator));
-        }
-        
-        private void OnGUI()
-        {
-            GUILayout.Label("Generate Grid", EditorStyles.boldLabel);
-
-            GUILayout.Space(LayoutSpace);
-            _gridSize = EditorGUILayout.Vector3Field("Grid Size", _gridSize);
-            _padding = EditorGUILayout.IntField("Padding", _padding);
-            GUILayout.Space(LayoutSpace);
-            
-            if (GUILayout.Button("Generate"))
-            {
-                GenerateGrid();
-            }
-        }
-
-        private void GenerateGrid()
+        public void Generate(Vector3 gridSize, float padding)
         {
             var parent = new GameObject(ParentName);
+            var gridVisualization = parent.AddComponent<GridVisualization>();
             
-            for (var i = 0; i < _gridSize.z; i++)
+            for (var i = 0; i < gridSize.z; i++)
             {
-                for(var j = 0; j < _gridSize.y; j++)
+                for(var j = 0; j < gridSize.y; j++)
                 {
-                    for(var k= 0; k < _gridSize.x; k++)
+                    for(var k= 0; k < gridSize.x; k++)
                     {
-                        var nodePosition = new Vector3(k * _padding, j * _padding, i * _padding);
+                        var nodePosition = new Vector3(k, j, i) * padding;
                         var nodeName = $"{NodeName}_{i}_{j}_{k}";
+
+                        var node = CreateNode(nodePosition, parent, nodeName);
                         
-                        AddNode(nodePosition, parent, nodeName);
+                        var gridData = new GridData(new List<NodeData>(), gridSize);
+                        gridData.Nodes.Add(new NodeData(node.transform));
+                        
+                        gridVisualization.GridData = gridData;
                     }
                 }
             }
         }
-
-        private void AddNode(Vector3 nodePosition, GameObject parent, string nodeName)
+        
+        private GameObject CreateNode(Vector3 nodePosition, GameObject parent, string nodeName)
         {
             var node = new GameObject(nodeName)
             {
@@ -63,6 +44,8 @@ namespace Editor
             };
             node.AddComponent<NodeVisualization>();
             node.transform.SetParent(parent.transform);
+
+            return node;
         }
     }
 }
