@@ -1,6 +1,6 @@
 {
   "name": "com.sokpapageorgiou.gridgenerator",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "displayName": "Sok.GridGenerator",
   "description": "Generates a 3D grid of GameObjects",
   "unity": "2022.3",
