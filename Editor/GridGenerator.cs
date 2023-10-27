@@ -7,8 +7,6 @@ namespace Editor
     {
         private const string ParentName = "Grid";
         private const string NodeName = "Node";
-
-        private Vector3[][][] _nodes;
         
         public void Generate(Vector3 gridSize, float padding)
         {
