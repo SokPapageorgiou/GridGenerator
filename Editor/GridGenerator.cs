@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Editor
 {
@@ -15,21 +16,19 @@ namespace Editor
             var gridVisualization = parent.AddComponent<GridVisualization>();
             gridVisualization.Init(gridSize);
             
-            
-            for (var i = 0; i < gridSize.z; i++)
-            {
-                for(var j = 0; j < gridSize.y; j++)
-                {
-                    for(var k= 0; k < gridSize.x; k++)
-                    {
-                        var nodeIndex = new Vector3(k, j, i);
-                        var nodePosition = nodeIndex * padding;
-                        var nodeName = $"{NodeName}_{i}_{j}_{k}";
+            var nodesToAdd = 
+                from i in Enumerable.Range(0, (int)gridSize.z)
+                from j in Enumerable.Range(0, (int)gridSize.y)
+                from k in Enumerable.Range(0, (int)gridSize.x)
+                let nodeIndex = new Vector3(k, j, i)
+                let nodePosition = nodeIndex * padding
+                let nodeName = $"{NodeName}_{i}_{j}_{k}"
+                select (NodeIndex: nodeIndex, NodePosition: nodePosition, NodeName: nodeName);
 
-                        var node = CreateNode(nodePosition, parent, nodeName);
-                        gridVisualization.AddNode(nodeIndex, node);
-                    }
-                }
+            foreach (var nodeData in nodesToAdd)
+            {
+                var node = CreateNode(nodeData.NodePosition, parent, nodeData.NodeName);
+                gridVisualization.AddNode(nodeData.NodeIndex, node);
             }
         }
         
